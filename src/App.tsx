@@ -1,49 +1,48 @@
-import { Suspense, useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import Characters from './Characters'
+import { Suspense, useState } from "react";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "/vite.svg";
+import "./App.css";
+import Planets from "./Planets";
 
 // app.js
-import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
-import ErrorBoundary from './ErrorBoundary'
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import ErrorBoundary from "./ErrorBoundary";
 // Initialze the client
 const queryClient = new QueryClient();
 
 function App() {
-  const [count, setCount] = useState(0)
+	const [count, setCount] = useState(0);
 
-  return (
-      <ErrorBoundary fallback={<div>Something went wrong</div>}>
-    <QueryClientProvider client={queryClient}>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-      {
-count > 0 ? (
-      <Suspense fallback={<div>Loading...</div>}>
-        <Characters />
-      </Suspense>
-) : null
-      }
-    </QueryClientProvider>
-      </ErrorBoundary>
-  )
-} export default App
+	return (
+		<ErrorBoundary fallback={<div>Something went wrong</div>}>
+			<QueryClientProvider client={queryClient}>
+				<div>
+					<a href="https://vitejs.dev" target="_blank" rel="noreferrer">
+						<img src={viteLogo} className="logo" alt="Vite logo" />
+					</a>
+					<a href="https://react.dev" target="_blank" rel="noreferrer">
+						<img src={reactLogo} className="logo react" alt="React logo" />
+					</a>
+				</div>
+				<h1>Vite + React</h1>
+				<div className="card">
+					<button type="button" onClick={() => setCount((count) => count + 1)}>
+						count is {count}
+					</button>
+					<p>
+						Edit <code>src/App.tsx</code> and save to test HMR
+					</p>
+				</div>
+				<p className="read-the-docs">
+					Click on the Vite and React logos to learn more
+				</p>
+				{count > 0 ? (
+					<Suspense fallback={<div>Loading...</div>}>
+						<Planets />
+					</Suspense>
+				) : null}
+			</QueryClientProvider>
+		</ErrorBoundary>
+	);
+}
+export default App;
